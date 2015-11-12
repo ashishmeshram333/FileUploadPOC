@@ -18,8 +18,13 @@ namespace FileUploader
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Bootstrap").Include(
+                        "~/Scripts/bootstrap.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/KO").Include(
-            "~/Scripts/knockout-3.3.0.js"));
+            "~/Scripts/knockout-3.3.0.js")
+            .Include("~/Scripts/Scripts.js")
+            );
 
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -28,6 +33,8 @@ namespace FileUploader
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/themes/FileUploadSS.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/themes/FileUploadSS.css","~/Content/bootstrap.css", "~/Content/bootstrap.theme.css"));
+            
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

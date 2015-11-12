@@ -14,7 +14,7 @@
     };
 
     self.save = function (form) {
-        alert("Could now transmit to server: " + ko.utils.stringifyJson(self.gifts));
+        alert("Could now transmit to server: " + ko.utils.stringifyJson(self.Ufiles));
         // To actually transmit to server as a regular form post, write this: ko.utils.postJson($("form")[0], self.gifts);
     };
 };
@@ -23,6 +23,7 @@ var viewModelFiles = new FileModel([
     { name: "Test File 1", created: "ABC" },
     { name: "Test File 2", created: "XYZ" }
 ]);
+ko.applyBindings(viewModelFiles, document.getElementById('pnlFile'));
 
 
 function dragEnter(evt) {
@@ -52,19 +53,22 @@ function drop(evt) {
     if (files.length > 0) {
         for (i = 0; i < files.length; i++) {
 //            $('#fileAttr').text(files[i].name);
-//            data.append("file" + i, files[i]);
+            //            data.append("file" + i, files[i]);
+            viewModelFiles.addFile({ name: files[i].name, created: files[i].lastModifiedDate });
         }
     }
 }
 
 function uploadFiles()
 {
+    alert(files[0].name + files[0].lastModifiedDate);
 
     if (files.length > 0) {
         if (window.FormData !== undefined) {
             var data = new FormData();
             for (i = 0; i < files.length; i++) {
                 //console.log(files[i]);
+                viewModelFiles.addFile({ name: files[i].name, created: files[i].lastModifiedDate });
                 data.append("file" + i, files[i]);
             }
 
@@ -84,15 +88,28 @@ function uploadFiles()
             alert("your browser does not support formData! Please upgrade");
         }
     }
+    else {
+        alert("Please upload atleast one file.");
+    }
 
 }
 
 $(document).ready(function () {
+
     var $box = $('#ulbox');
     $box.bind("dragenter", dragEnter);
     $box.bind("dragexit", dragLeave);
     $box.bind("drop", drop);
-    ko.applyBindings(viewModelFiles);
+
 
 
 });
+
+// This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+function AppViewModel() {
+    this.firstName = "Bert";
+    this.lastName = "Bertington";
+}
+
+// Activates knockout.js
+ko.applyBindings(new AppViewModel(),document.getElementById('divTest'));

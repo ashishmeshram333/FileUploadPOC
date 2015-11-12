@@ -29,7 +29,7 @@ namespace FileUploader.Controllers
                         throw new HttpResponseException(HttpStatusCode.InternalServerError);
                     }
 
-                    var mystring = streamProvider.Contents[1].ToString();
+                    //var mystring = streamProvider.Contents[1].ToString();
                     
                     string paramName = streamProvider.FormData[0].ToString();
 

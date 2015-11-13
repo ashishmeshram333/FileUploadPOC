@@ -1,12 +1,17 @@
 ﻿<div class="container" id="main">
+    <div class="form-horizontal" style="margin-bottom:10px;width:800px;padding-left:100px;">
+        <label for="comment"style="width:200px;text-align:center;float: left; align-content:center;padding-top:10px">Comment:</label>
+        <textarea class="form-control" rows="2" id="comment" style="width:500px;"></textarea>
+    </div>
+
     <div class="row">
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-5 col-sm-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="col-md-8">
                         <h4>Drag your files below</h4>
                     </div>
-                    <input type="button" value="Submit" class="btn btn-info" onclick="uploadFiles()" />
+                    <input type="button" value="Submit" class="btn btn-lg btn-info" onclick="uploadFiles()" />
                 </div>
                 <div class="panel-body">
                     <div id="ulbox">
@@ -15,15 +20,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-            <div class="well">
+        <div class="col-md-7 col-sm-7">
                 <div class="panel panel-default" id="pnlFile">
-                    <div class="panel-heading"><h4>File Attributes</h4></div>
+                    <div class="panel-heading">
+                        <h4>File Attributes</h4>
+                    </div>
                     <div class="panel-body">
-                        <div id="fileAttrSpan">
-                            <span id="fileAttr">File Name:</span>
-                        </div>
-                        <table>
+                        <table id="tblFiles">
                             <thead>
                                 <tr>
                                     <th>File Name</th>
@@ -40,10 +43,9 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div><!--/row-->
-    <div id="divTest">
-        <p>First name: <strong data-bind="text:  ko.toJSON($data)">todo</strong></p>
+    <div id="divTest" style="display:none;">
+        <p>First name: <strong data-bind="text: ko.toJSON($data)">todo</strong></p>
         <p>Last name: <strong data-bind="text: lastName">todo</strong></p>
     </div>
 

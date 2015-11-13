@@ -16,6 +16,7 @@
     self.save = function (form) {
         alert("Could now transmit to server: " + ko.utils.stringifyJson(self.Ufiles));
         // To actually transmit to server as a regular form post, write this: ko.utils.postJson($("form")[0], self.gifts);
+        ko.utils.postJson($("form")[0], self.gifts);
     };
 };
 
@@ -54,6 +55,7 @@ function drop(evt) {
         for (i = 0; i < files.length; i++) {
 //            $('#fileAttr').text(files[i].name);
             //            data.append("file" + i, files[i]);
+            debugger;
             viewModelFiles.addFile({ name: files[i].name, created: files[i].lastModifiedDate });
         }
     }
@@ -68,10 +70,13 @@ function uploadFiles()
             var data = new FormData();
             for (i = 0; i < files.length; i++) {
                 //console.log(files[i]);
-                viewModelFiles.addFile({ name: files[i].name, created: files[i].lastModifiedDate });
+                //viewModelFiles.addFile({ name: files[i].name, created: files[i].lastModifiedDate });
                 data.append("file" + i, files[i]);
             }
-
+            //append batch 
+            data.append("batch", $('#sel1').val());
+            //append comments
+            data.append("comment", $('#comment').val());
             $.ajax({
                 type: "POST",
                 url: "/api/file",

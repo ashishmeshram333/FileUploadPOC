@@ -2,15 +2,15 @@
     var self = this;
     self.Ufiles = ko.observableArray(Ufiles);
     
-    self.addFile = function () {
-        self.Ufiles.push({
-            name: "",
-            created: ""
-        });
+    self.addFile = function (item) {
+        self.Ufiles.push(item);
     };
 
     self.removeFile = function (Ufile) {
         self.Ufiles.remove(Ufile);
+    };
+    self.removeAll = function () {
+        self.Ufiles.removeAll();
     };
 
     self.save = function (form) {
@@ -21,8 +21,7 @@
 };
 
 var viewModelFiles = new FileModel([
-    { name: "Test File 1", created: "ABC" },
-    { name: "Test File 2", created: "XYZ" }
+    { name: "", created: "" }
 ]);
 ko.applyBindings(viewModelFiles, document.getElementById('pnlFile'));
 
@@ -53,17 +52,13 @@ function drop(evt) {
 
     if (files.length > 0) {
         for (i = 0; i < files.length; i++) {
-//            $('#fileAttr').text(files[i].name);
-            //            data.append("file" + i, files[i]);
-            debugger;
-            viewModelFiles.addFile({ name: files[i].name, created: files[i].lastModifiedDate });
+            viewModelFiles.addFile({ name: files[i].name, created: files[i].lastModifiedDate.toLocaleDateString() });
         }
     }
 }
 
 function uploadFiles()
 {
-    alert(files[0].name + files[0].lastModifiedDate);
 
     if (files.length > 0) {
         if (window.FormData !== undefined) {
@@ -84,9 +79,11 @@ function uploadFiles()
                 processData: false,
                 data: data,
                 success: function (res) {
-                    $.each(res, function (i, item) {
-                        viewModel.uploads.push(item);
-                    });
+                    //$.each(res, function (i, item) {
+                    //    viewModel.uploads.push(item);
+                    //});
+                    viewModelFiles.removeAll();
+                    alert('File(s) uploaded successfully!');
                 }
             });
         } else {

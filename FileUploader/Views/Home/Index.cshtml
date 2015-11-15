@@ -1,21 +1,32 @@
 ﻿<div class="container" id="main">
-    <div class="form-horizontal" style="margin-bottom:10px;width:800px;padding-left:100px;">
-        <label for="comment"style="width:200px;text-align:center;float: left; align-content:center;padding-top:10px">Comment:</label>
-        <textarea class="form-control" rows="2" id="comment" style="width:500px;"></textarea>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-md-5 col-sm-5">
+            <label for="sel1">Select Batch:</label>
+            <select class="input-group form-control" id="sel1">
+                <option>--Select Batch--</option>
+                <option>Batch 1</option>
+                <option>Batch 2</option>
+                <option>Batch 3</option>
+                <option>Batch 4</option>
+            </select>
+        </div>
+        <div class="col-md-7 col-sm-7">
+            <label for="comment" >Comment:</label>
+            <input type="text" class="form-control" id="comment" />
+        </div>
     </div>
-
     <div class="row">
         <div class="col-md-5 col-sm-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="col-md-8">
-                        <h4>Drag your files below</h4>
+                        <h4>Drop files below</h4>
                     </div>
                     <input type="button" value="Submit" class="btn btn-lg btn-info" onclick="uploadFiles()" />
                 </div>
                 <div class="panel-body">
                     <div id="ulbox">
-                        <span>Drop your files here...</span>
+                        <span>Drop files here...</span>
                     </div>
                 </div>
             </div>
